@@ -14,10 +14,10 @@
     <option name="GUTTER_BACKGROUND" value="1d2021" />
     <option name="INDENT_GUIDE" value="665c54" />
     <option name="LINE_NUMBERS_COLOR" value="928374" />
-    <option name="METHOD_SEPARATORS_COLOR" value="2a2a2a" />
-    <option name="MODIFIED_LINES_COLOR" value="415f69" />
+    <option name="METHOD_SEPARATORS_COLOR" value="32302f" />
+    <option name="MODIFIED_LINES_COLOR" value="458588" />
     <option name="RIGHT_MARGIN_COLOR" value="665c54" />
-    <option name="SELECTED_INDENT_GUIDE" value="f8e1aa" />
+    <option name="SELECTED_INDENT_GUIDE" value="d79921" />
     <option name="SELECTED_TEARLINE_COLOR" value="8ec07c" />
     <option name="SELECTION_BACKGROUND" value="665c54" />
     <option name="ScrollBar.Mac.Transparent.hoverThumbBorderColor" value="3c3836" />
@@ -91,12 +91,12 @@
     </option>
     <option name="BREAKPOINT_ATTRIBUTES">
       <value>
-        <option name="BACKGROUND" value="3a2323" />
+        <option name="BACKGROUND" value="cc241d33" />
       </value>
     </option>
     <option name="Block comment">
       <value>
-        <option name="FOREGROUND" value="83786e" />
+        <option name="FOREGROUND" value="928374" />
       </value>
     </option>
     <option name="CLASS_NAME_ATTRIBUTES">
@@ -298,12 +298,12 @@
     </option>
     <option name="DEFAULT_BRACES">
       <value>
-        <option name="FOREGROUND" value="f8e1aa" />
+        <option name="FOREGROUND" value="d5c4a1" />
       </value>
     </option>
     <option name="DEFAULT_BRACKETS">
       <value>
-        <option name="FOREGROUND" value="f8e1aa" />
+        <option name="FOREGROUND" value="d5c4a1" />
       </value>
     </option>
     <option name="DEFAULT_CLASS_NAME">
@@ -330,7 +330,7 @@
     </option>
     <option name="DEFAULT_DOC_COMMENT">
       <value>
-        <option name="FOREGROUND" value="83786e" />
+        <option name="FOREGROUND" value="928374" />
       </value>
     </option>
     <option name="DEFAULT_DOC_COMMENT_TAG">
@@ -441,7 +441,7 @@
     </option>
     <option name="DEFAULT_PARENTHS">
       <value>
-        <option name="FOREGROUND" value="f8e1aa" />
+        <option name="FOREGROUND" value="d5c4a1" />
       </value>
     </option>
     <option name="DEFAULT_PREDEFINED_SYMBOL">
@@ -486,7 +486,7 @@
     </option>
     <option name="DELETED_TEXT_ATTRIBUTES">
       <value>
-        <option name="BACKGROUND" value="611818" />
+        <option name="BACKGROUND" value="cc241d40" />
         <option name="EFFECT_COLOR" value="ebdbb2" />
         <option name="EFFECT_TYPE" value="3" />
       </value>
@@ -599,8 +599,8 @@
     <option name="IDENTIFIER_UNDER_CARET_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="ebdbb2" />
-        <option name="BACKGROUND" value="313008" />
-        <option name="ERROR_STRIPE_COLOR" value="313008" />
+        <option name="BACKGROUND" value="d7992140" />
+        <option name="ERROR_STRIPE_COLOR" value="d79921" />
       </value>
     </option>
     <option name="IMPLICIT_ANONYMOUS_CLASS_PARAMETER_ATTRIBUTES">
@@ -640,7 +640,7 @@
     </option>
     <option name="KOTLIN_ANNOTATION">
       <value>
-        <option name="FOREGROUND" value="83786e" />
+        <option name="FOREGROUND" value="928374" />
       </value>
     </option>
     <option name="KOTLIN_LABEL">
@@ -686,7 +686,7 @@
     <option name="List/map to object conversion" baseAttributes="JAVA_NUMBER" />
     <option name="MATCHED_BRACE_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="ff8647" />
+        <option name="FOREGROUND" value="fe8019" />
       </value>
     </option>
     <option name="METHOD_DECLARATION_ATTRIBUTES">
@@ -924,13 +924,13 @@
     <option name="SEARCH_RESULT_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="ebdbb2" />
-        <option name="BACKGROUND" value="5a590f" />
-        <option name="ERROR_STRIPE_COLOR" value="5a590f" />
+        <option name="BACKGROUND" value="d799214d" />
+        <option name="ERROR_STRIPE_COLOR" value="d79921" />
       </value>
     </option>
     <option name="SPY-JS.EXCEPTION">
       <value>
-        <option name="BACKGROUND" value="4f1b14" />
+        <option name="BACKGROUND" value="cc241d33" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
     </option>
@@ -987,8 +987,8 @@
     <option name="TEXT_SEARCH_RESULT_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="ebdbb2" />
-        <option name="BACKGROUND" value="5a590f" />
-        <option name="ERROR_STRIPE_COLOR" value="5a590f" />
+        <option name="BACKGROUND" value="d799214d" />
+        <option name="ERROR_STRIPE_COLOR" value="d79921" />
       </value>
     </option>
     <option name="TODO_DEFAULT_ATTRIBUTES">
@@ -1011,7 +1011,7 @@
     </option>
     <option name="TYPE_PARAMETER_NAME_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="bfa4a4" />
+        <option name="FOREGROUND" value="d3869b" />
       </value>
     </option>
     <option name="TYPO">
@@ -1031,15 +1031,15 @@
     <option name="WRITE_IDENTIFIER_UNDER_CARET_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="ebdbb2" />
-        <option name="BACKGROUND" value="2f0d0d" />
-        <option name="ERROR_STRIPE_COLOR" value="2f0d0d" />
+        <option name="BACKGROUND" value="cc241d40" />
+        <option name="ERROR_STRIPE_COLOR" value="cc241d" />
       </value>
     </option>
     <option name="WRITE_SEARCH_RESULT_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="ebdbb2" />
-        <option name="BACKGROUND" value="611818" />
-        <option name="ERROR_STRIPE_COLOR" value="611818" />
+        <option name="BACKGROUND" value="cc241d4d" />
+        <option name="ERROR_STRIPE_COLOR" value="cc241d" />
       </value>
     </option>
     <option name="WRONG_REFERENCES_ATTRIBUTES">

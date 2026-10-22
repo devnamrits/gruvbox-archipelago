@@ -21,7 +21,7 @@ layout.
 | Bright foreground | `#fbf1c7` |
 | Accent (brand) | `#458588` |
 | Link | `#83a598` |
-| Gold (selected tab) | `#d79921` |
+| Selected tab underline | `#83a598` |
 | Red | `#fb4934` |
 | Green | `#b8bb26` |
 | Yellow | `#fabd2f` |
@@ -34,10 +34,10 @@ layout.
 | Role | Hex |
 | --- | --- |
 | Editor background (hard) | `#f9f5d7` |
-| Tool window / island | `#f2e5bc` |
+| Tool window / island | `#fbf1c7` |
 | Main window backdrop | `#ebdbb2` |
 | Raised surface / border | `#d5c4a1` |
-| Selection | `#d5c4a1` |
+| Selection | `#ebdbb2` |
 | Muted border | `#bdae93` |
 | Disabled text | `#a89984` |
 | Muted text | `#7c6f64` |
@@ -46,7 +46,7 @@ layout.
 | Bright foreground | `#282828` |
 | Accent (brand) | `#076678` |
 | Link | `#076678` |
-| Gold (selected tab) | `#b57614` |
+| Selected tab underline | `#076678` |
 | Red | `#9d0006` |
 | Green | `#79740e` |
 | Yellow | `#b57614` |

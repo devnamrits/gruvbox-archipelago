@@ -5,7 +5,7 @@
 -->
 <scheme name="Gruvbox Archipelago Light" version="142" parent_scheme="Default">
   <colors>
-    <option name="ADDED_LINES_COLOR" value="b8bb26" />
+    <option name="ADDED_LINES_COLOR" value="79740e" />
     <option name="ANNOTATIONS_COLOR" value="928374" />
     <option name="CARET_ROW_COLOR" value="ebdbb2" />
     <option name="CONSOLE_BACKGROUND_KEY" value="f9f5d7" />
@@ -13,8 +13,8 @@
     <option name="GUTTER_BACKGROUND" value="f9f5d7" />
     <option name="INDENT_GUIDE" value="bdae93" />
     <option name="LINE_NUMBERS_COLOR" value="928374" />
-    <option name="METHOD_SEPARATORS_COLOR" value="2a2a2a" />
-    <option name="MODIFIED_LINES_COLOR" value="415f69" />
+    <option name="METHOD_SEPARATORS_COLOR" value="ebdbb2" />
+    <option name="MODIFIED_LINES_COLOR" value="076678" />
     <option name="RIGHT_MARGIN_COLOR" value="bdae93" />
     <option name="SELECTED_TEARLINE_COLOR" value="427b58" />
     <option name="SELECTION_BACKGROUND" value="bdae93" />
@@ -63,7 +63,7 @@
     </option>
     <option name="BAD_CHARACTER">
       <value>
-        <option name="EFFECT_COLOR" value="fb4934" />
+        <option name="EFFECT_COLOR" value="9d0006" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
     </option>
@@ -94,7 +94,7 @@
     </option>
     <option name="Block comment">
       <value>
-        <option name="FOREGROUND" value="83786e" />
+        <option name="FOREGROUND" value="928374" />
       </value>
     </option>
     <option name="CLASS_NAME_ATTRIBUTES">
@@ -324,7 +324,7 @@
     </option>
     <option name="DEFAULT_DOC_COMMENT">
       <value>
-        <option name="FOREGROUND" value="83786e" />
+        <option name="FOREGROUND" value="928374" />
       </value>
     </option>
     <option name="DEFAULT_DOC_COMMENT_TAG">
@@ -517,7 +517,7 @@
     <option name="FOLDED_TEXT_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="3c3836" />
-        <option name="BACKGROUND" value="8ec07c" />
+        <option name="BACKGROUND" value="d5c4a1" />
       </value>
     </option>
     <option name="FOLLOWED_HYPERLINK_ATTRIBUTES">
@@ -591,8 +591,8 @@
     <option name="IDENTIFIER_UNDER_CARET_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="3c3836" />
-        <option name="BACKGROUND" value="83a598" />
-        <option name="ERROR_STRIPE_COLOR" value="458587" />
+        <option name="BACKGROUND" value="d7992140" />
+        <option name="ERROR_STRIPE_COLOR" value="d79921" />
       </value>
     </option>
     <option name="IMPLICIT_ANONYMOUS_CLASS_PARAMETER_ATTRIBUTES">
@@ -609,7 +609,7 @@
     </option>
     <option name="INJECTED_LANGUAGE_FRAGMENT">
       <value>
-        <option name="FOREGROUND" value="1d2021" />
+        <option name="FOREGROUND" value="282828" />
       </value>
     </option>
     <option name="INLINE_PARAMETER_HINT">
@@ -632,7 +632,7 @@
     </option>
     <option name="KOTLIN_ANNOTATION">
       <value>
-        <option name="FOREGROUND" value="83786e" />
+        <option name="FOREGROUND" value="928374" />
       </value>
     </option>
     <option name="KOTLIN_LABEL">
@@ -647,7 +647,7 @@
     </option>
     <option name="KOTLIN_NAMED_ARGUMENT">
       <value>
-        <option name="FOREGROUND" value="83a598" />
+        <option name="FOREGROUND" value="076678" />
       </value>
     </option>
     <option name="KOTLIN_SMART_CAST_VALUE">
@@ -657,7 +657,7 @@
     </option>
     <option name="KOTLIN_TYPE_PARAMETER">
       <value>
-        <option name="FOREGROUND" value="83a598" />
+        <option name="FOREGROUND" value="076678" />
       </value>
     </option>
     <option name="LOG_ERROR_OUTPUT">
@@ -678,7 +678,7 @@
     <option name="List/map to object conversion" baseAttributes="JAVA_NUMBER" />
     <option name="MATCHED_BRACE_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="ff8647" />
+        <option name="FOREGROUND" value="af3a03" />
       </value>
     </option>
     <option name="METHOD_DECLARATION_ATTRIBUTES">
@@ -905,7 +905,7 @@
     </option>
     <option name="Rainbow Parens Level 9">
       <value>
-        <option name="FOREGROUND" value="1d2021" />
+        <option name="FOREGROUND" value="282828" />
       </value>
     </option>
     <option name="SASS_MIXIN">
@@ -916,13 +916,13 @@
     <option name="SEARCH_RESULT_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="3c3836" />
-        <option name="BACKGROUND" value="83a598" />
-        <option name="ERROR_STRIPE_COLOR" value="83a598" />
+        <option name="BACKGROUND" value="d799214d" />
+        <option name="ERROR_STRIPE_COLOR" value="d79921" />
       </value>
     </option>
     <option name="SPY-JS.EXCEPTION">
       <value>
-        <option name="BACKGROUND" value="4f1b14" />
+        <option name="BACKGROUND" value="cc241d33" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
     </option>
@@ -979,8 +979,8 @@
     <option name="TEXT_SEARCH_RESULT_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="3c3836" />
-        <option name="BACKGROUND" value="83a598" />
-        <option name="ERROR_STRIPE_COLOR" value="83a598" />
+        <option name="BACKGROUND" value="d799214d" />
+        <option name="ERROR_STRIPE_COLOR" value="d79921" />
       </value>
     </option>
     <option name="TODO_DEFAULT_ATTRIBUTES">
@@ -1003,12 +1003,12 @@
     </option>
     <option name="TYPE_PARAMETER_NAME_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="bfa4a4" />
+        <option name="FOREGROUND" value="8f3f71" />
       </value>
     </option>
     <option name="TYPO">
       <value>
-        <option name="EFFECT_COLOR" value="b8bb26" />
+        <option name="EFFECT_COLOR" value="79740e" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
     </option>
@@ -1023,15 +1023,15 @@
     <option name="WRITE_IDENTIFIER_UNDER_CARET_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="3c3836" />
-        <option name="BACKGROUND" value="8ec07c" />
-        <option name="ERROR_STRIPE_COLOR" value="8ec07c" />
+        <option name="BACKGROUND" value="cc241d33" />
+        <option name="ERROR_STRIPE_COLOR" value="9d0006" />
       </value>
     </option>
     <option name="WRITE_SEARCH_RESULT_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="3c3836" />
-        <option name="BACKGROUND" value="8ec07c" />
-        <option name="ERROR_STRIPE_COLOR" value="8ec07c" />
+        <option name="BACKGROUND" value="cc241d33" />
+        <option name="ERROR_STRIPE_COLOR" value="9d0006" />
       </value>
     </option>
     <option name="WRONG_REFERENCES_ATTRIBUTES">

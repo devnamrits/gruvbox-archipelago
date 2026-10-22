@@ -28,7 +28,7 @@ borders. The Mainland variants inherit from the classic `ExperimentalDark` /
 - Editor schemes cover Java, Kotlin, Rust, Python, JavaScript/TypeScript,
   HTML/XML, SQL, shell, diff, VCS, and more.
 - Transparent toolbar/status-bar borders in the Islands variants.
-- New UI tab treatment with a Gruvbox gold selected-tab accent.
+- New UI tab treatment with a Gruvbox blue selected-tab accent.
 - No bundled fonts, no runtime dependencies. Themes only.
 
 ## Installation
