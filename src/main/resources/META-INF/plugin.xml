@@ -1,0 +1,37 @@
+<idea-plugin>
+    <id>com.devnamrits.gruvboxarchipelago</id>
+    <name>Gruvbox Archipelago</name>
+    <version>0.1.0</version>
+    <vendor url="https://github.com/devnamrits/gruvbox-archipelago">devnamrits</vendor>
+
+    <description><![CDATA[
+        <p><b>Gruvbox Archipelago</b> brings the warm, retro-groove palette of
+        Gruvbox to modern JetBrains IDEs, with first-class support for the
+        Islands UI.</p>
+
+        <p>Four themes are included:</p>
+        <ul>
+            <li><b>Archipelago Dark</b> &mdash; Gruvbox dark with the modern Islands layout.</li>
+            <li><b>Archipelago Light</b> &mdash; Gruvbox light with the modern Islands layout.</li>
+            <li><b>Mainland Dark</b> &mdash; the classic flat dark layout, without islands.</li>
+            <li><b>Mainland Light</b> &mdash; the classic flat light layout, without islands.</li>
+        </ul>
+
+        <p>Based on the editor schemes from Vincent Parizet's MIT-licensed
+        Gruvbox Theme, refreshed for IntelliJ Platform 2025.3+ and the Islands
+        UI, with full UI and editor-scheme coverage for modern JetBrains IDEs.</p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <themeProvider id="com.devnamrits.gruvboxarchipelago.archipelago.dark"
+                       path="/themes/archipelago-dark.theme.json"/>
+        <themeProvider id="com.devnamrits.gruvboxarchipelago.archipelago.light"
+                       path="/themes/archipelago-light.theme.json"/>
+        <themeProvider id="com.devnamrits.gruvboxarchipelago.mainland.dark"
+                       path="/themes/mainland-dark.theme.json"/>
+        <themeProvider id="com.devnamrits.gruvboxarchipelago.mainland.light"
+                       path="/themes/mainland-light.theme.json"/>
+    </extensions>
+</idea-plugin>

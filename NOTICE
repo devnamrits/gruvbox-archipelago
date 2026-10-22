@@ -1,0 +1,22 @@
+Gruvbox Archipelago
+===================
+
+The editor color schemes in this project are derived from the MIT-licensed
+Gruvbox Theme for JetBrains IDEs by Vincent Parizet:
+
+  https://github.com/Vincent-P/gruvbox-intellij-theme
+
+Copyright (c) 2019 Vincent Parizet.
+
+The Gruvbox color palette was created by Pavel Pertsev (morhetz) and is also
+distributed under the MIT license:
+
+  https://github.com/morhetz/gruvbox
+
+The Islands-specific UI guidance and theme keys are part of the public
+IntelliJ Platform SDK documentation:
+
+  https://plugins.jetbrains.com/docs/intellij/supporting-islands-theme.html
+
+JetBrains, IntelliJ IDEA, and the IntelliJ Platform are trademarks of
+JetBrains s.r.o. This project is not affiliated with or endorsed by JetBrains.
