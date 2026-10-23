@@ -54,6 +54,14 @@ layout.
 | Aqua | `#427b58` |
 | Orange | `#af3a03` |
 
+## Canonical usage
+
+UI surfaces, text, borders, selection, tabs, feedback states, and the editor
+schemes resolve to canonical Gruvbox hex values, or to canonical Gruvbox colors
+with alpha. IntelliJ's 16-step primitive ramps and the welcome-screen gradients
+need intermediate shades, so those are mixed only from canonical Gruvbox colors
+and canonical Gruvbox backgrounds. No JetBrains gray or blue values are used.
+
 ## Islands contrast
 
 The Islands guidance recommends at least **1.20:1** contrast between the main

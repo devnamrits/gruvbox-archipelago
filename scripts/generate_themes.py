@@ -330,17 +330,17 @@ def build_colors(palette: dict[str, str], dark: bool, islands: bool) -> dict[str
     text_disabled = "bg4"
     text_link = "blue-110" if dark else "blue-90"
     accent_brand = "blue-100" if dark else "blue-90"
-    accent_brand_secondary = "blue-40" if dark else "blue-160"
-    accent_brand_border_secondary = "blue-60" if dark else "blue-130"
-    accent_error = "red-80"
-    accent_error_secondary = "red-40" if dark else "red-160"
-    accent_error_border_secondary = "red-60" if dark else "red-130"
-    accent_warning = "yellow-80"
-    accent_warning_secondary = "yellow-40" if dark else "yellow-160"
-    accent_warning_border_secondary = "yellow-60" if dark else "yellow-130"
-    accent_success = "green-80"
-    accent_success_secondary = "green-40" if dark else "green-160"
-    accent_success_border_secondary = "green-60" if dark else "green-130"
+    accent_brand_secondary = "#45858833" if dark else "#07667826"
+    accent_brand_border_secondary = "#458588" if dark else "#076678"
+    accent_error = "red-100" if dark else "red-90"
+    accent_error_secondary = "#cc241d33" if dark else "#cc241d26"
+    accent_error_border_secondary = "#cc241d" if dark else "#9d0006"
+    accent_warning = "yellow-90"
+    accent_warning_secondary = "#d7992133" if dark else "#d7992126"
+    accent_warning_border_secondary = "#d79921" if dark else "#b57614"
+    accent_success = "green-90"
+    accent_success_secondary = "#98971a33" if dark else "#79740e26"
+    accent_success_border_secondary = "#98971a" if dark else "#79740e"
 
     colors.update(
         {
@@ -389,7 +389,7 @@ def build_colors(palette: dict[str, str], dark: bool, islands: bool) -> dict[str
             "text-link": text_link,
             "editor-text": text,
             "icon-default-stroke": "fg3",
-            "icon-green-stroke": "green-110" if dark else "green-80",
+            "icon-green-stroke": "green-110" if dark else "green-90",
             "icon-over-accent": "#ffffff",
             "text-over-accent": "#ffffff",
             "text-over-accent-inverted": "#000000",
@@ -421,15 +421,15 @@ def build_colors(palette: dict[str, str], dark: bool, islands: bool) -> dict[str
             "accent-success-border": accent_success,
             "accent-success-bg-secondary": accent_success_secondary,
             "accent-success-border-secondary": accent_success_border_secondary,
-            "accent-ai-bg": "purple-20" if dark else "purple-150",
-            "accent-ai-border": "purple-50" if dark else "purple-100",
-            "accent-neutral-bg": "gray-60",
-            "text-error": "red-110" if dark else "red-80",
-            "text-warning": "yellow-110" if dark else "yellow-80",
-            "text-success": "green-110" if dark else "green-80",
+            "accent-ai-bg": "#b1628633" if dark else "#8f3f7126",
+            "accent-ai-border": "#b16286" if dark else "#8f3f71",
+            "accent-neutral-bg": "gray",
+            "text-error": "red-110" if dark else "red-90",
+            "text-warning": "yellow-110" if dark else "yellow-90",
+            "text-success": "green-110" if dark else "green-90",
             # Toolbar states
-            "toolbar-selected-bg": "blue-60" if dark else "blue-140",
-            "toolbar-selected-bg-hovered": "blue-70" if dark else "blue-130",
+            "toolbar-selected-bg": "blue-100" if dark else "blue-90",
+            "toolbar-selected-bg-hovered": "#458588cc" if dark else "#076678cc",
             "toolbar-selected-bg-active": accent_brand,
             "toolbar-run-bg": accent_success,
             "toolbar-run-bg-hovered": "green-90",
@@ -446,7 +446,7 @@ def build_colors(palette: dict[str, str], dark: bool, islands: bool) -> dict[str
             "control-border-raised": "bg3",
             "control-border-small": "bg3",
             "control-border-over-accent": "#ffffff80",
-            "control-success-border": "green-60",
+            "control-success-border": "green-90",
             "toolbar-bg-hovered": "bg1",
             "toolbar-bg-pressed": "bg2",
             "transparent-border": "#00000000",
@@ -454,7 +454,7 @@ def build_colors(palette: dict[str, str], dark: bool, islands: bool) -> dict[str
             "toggle-button-bg": "bg2",
             "toggle-off-bg": "bg1",
             "tree-indent-guide-border": "bg1",
-            "search-match-bg": "yellow-80" if dark else "yellow-100",
+            "search-match-bg": "#d7992140" if dark else "#d7992133",
             "popup-completion-match-text": text_link,
             # Feedback
             "feedback-bg": feedback_bg,
@@ -469,17 +469,17 @@ def build_colors(palette: dict[str, str], dark: bool, islands: bool) -> dict[str
             "feedback-success-border": accent_success_border_secondary,
             "feedback-warning-bg": accent_warning_secondary,
             "feedback-warning-border": accent_warning_border_secondary,
-            "feedback-ai-bg": "purple-20" if dark else "purple-150",
-            "feedback-ai-border": "purple-50" if dark else "purple-100",
+            "feedback-ai-bg": "#b1628633" if dark else "#8f3f7126",
+            "feedback-ai-border": "#b16286" if dark else "#8f3f71",
             # Onboarding
-            "got-it-bg": "blue-60" if dark else "blue-160",
-            "got-it-border": "blue-60" if dark else "blue-140",
-            "got-it-code-border": "#ffffff70" if dark else "blue-130",
+            "got-it-bg": "bg2" if dark else "bg0_s",
+            "got-it-border": "bg3" if dark else "bg2",
+            "got-it-code-border": "bg3" if dark else "bg2",
             "got-it-contrast-button-bg": accent_brand,
-            "got-it-shortcut-bg": "blue-40" if dark else "blue-150",
-            "got-it-text-link": "blue-110" if dark else "blue-80",
+            "got-it-shortcut-bg": "bg1",
+            "got-it-text-link": "blue-110" if dark else "blue-90",
             "got-it-text-step": "fg4",
-            "presentation-assistant-bg": "blue-60" if dark else "gray-30",
+            "presentation-assistant-bg": "bg2" if dark else "bg0_s",
         }
     )
 
@@ -882,17 +882,17 @@ def build_ui(dark: bool, islands: bool) -> dict:
             "blueBackground": "blue" if dark else "blue",
             "blueForeground": "bg0_h" if dark else "#ffffff",
             "blueSecondaryBackground": "#458588b3" if dark else "#07667829",
-            "blueSecondaryForeground": "blue-140" if dark else "blue-70",
+            "blueSecondaryForeground": "blue-110" if dark else "blue-90",
             "greenBackground": "green" if dark else "green",
             "greenForeground": "bg0_h" if dark else "#ffffff",
             "greenSecondaryBackground": "#98971ab3" if dark else "#79740e29",
-            "greenSecondaryForeground": "green-140" if dark else "green-70",
+            "greenSecondaryForeground": "green-110" if dark else "green-90",
             "purpleBackground": "purple" if dark else "purple",
             "purpleForeground": "bg0_h" if dark else "#ffffff",
             "purpleSecondaryBackground": "#b16286b3" if dark else "#8f3f7129",
-            "purpleSecondaryForeground": "purple-140" if dark else "purple-70",
+            "purpleSecondaryForeground": "purple-110" if dark else "purple-90",
             "graySecondaryBackground": "#fbf1c729" if dark else "#2828281a",
-            "graySecondaryForeground": "#fbf1c7cc" if dark else "gray-70",
+            "graySecondaryForeground": "fg1",
             "disabledBackground": "#fbf1c729" if dark else "#2828281a",
             "disabledForeground": "#fbf1c766" if dark else "#28282866",
         },
