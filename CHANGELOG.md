@@ -20,3 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Scheme generator for the Medium and Soft editor schemes.
 - Canonical Gruvbox palette across all UI surfaces and editor schemes.
 - Islands UI support plus classic flat variants.
+
+### Fixed
+
+- Medium and Soft editor panes now use their own background instead of the
+  Hard `TEXT` background from the source scheme.

@@ -135,6 +135,7 @@ def main() -> int:
 
         scheme_path = theme.get("editorScheme", "").lstrip("/")
         scheme_file = ROOT / "src" / "main" / "resources" / scheme_path
+        text_bg = None
         if not scheme_file.is_file():
             errors.append(f"{path.name}: missing editorScheme {scheme_path}")
         else:
@@ -153,6 +154,11 @@ def main() -> int:
                     scheme_names[scheme_name] = scheme_file.name
                 if not scheme.get("parent_scheme"):
                     errors.append(f"{scheme_file.name}: missing parent_scheme")
+                text_bg_option = scheme.find(
+                    "attributes/option[@name='TEXT']/value/option[@name='BACKGROUND']"
+                )
+                if text_bg_option is not None:
+                    text_bg = text_bg_option.get("value")
                 for value in re.findall(r'value="([0-9a-fA-F]{6,8})"', scheme_file.read_text()):
                     if not is_canonical(value):
                         errors.append(f"{scheme_file.name}: off-palette {value}")
@@ -167,6 +173,15 @@ def main() -> int:
         backdrop = resolve(colors, colors.get("main-window-bg", ""))
         ratio = contrast(editor, backdrop) if editor and backdrop else 0
         print(f"  {name:28} editor={editor or '?':9} backdrop={backdrop or '?':9} contrast={ratio:.2f}:1")
+
+        if scheme_file.is_file():
+            if not text_bg:
+                errors.append(f"{scheme_file.name}: missing TEXT background")
+            elif strip_alpha(text_bg) != strip_alpha(editor):
+                errors.append(
+                    f"{scheme_file.name}: TEXT background {text_bg} "
+                    f"does not match editor-bg {editor}"
+                )
 
         if name.startswith("Archipelago") and ratio < 1.20:
             errors.append(f"{path.name}: Islands contrast {ratio:.2f}:1 is below 1.20:1")

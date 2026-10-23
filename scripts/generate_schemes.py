@@ -55,6 +55,18 @@ def set_option(text: str, name: str, value: str) -> str:
     return text
 
 
+def set_attribute_background(text: str, attribute: str, value: str) -> str:
+    pattern = re.compile(
+        rf'(<option name="{re.escape(attribute)}">\s*<value>.*?'
+        rf'<option name="BACKGROUND" value=")[^"]*("\s*/>)',
+        re.S,
+    )
+    text, count = pattern.subn(rf"\g<1>{value}\g<2>", text, count=1)
+    if count != 1:
+        raise SystemExit(f"missing attribute background: {attribute}")
+    return text
+
+
 def build_variant(base: str, mode: str, variant: str) -> str:
     cfg = VARIANTS[mode]
     text = (SCHEMES / base).read_text(encoding="utf-8")
@@ -83,6 +95,7 @@ def build_variant(base: str, mode: str, variant: str) -> str:
     text = set_option(text, "CARET_ROW_COLOR", cfg["caret"][variant])
     text = set_option(text, "METHOD_SEPARATORS_COLOR", cfg["separator"][variant])
     text = set_option(text, "DOCUMENTATION_COLOR", cfg["documentation"][variant])
+    text = set_attribute_background(text, "TEXT", bg)
     text = set_option(text, "ScrollBar.background", cfg["scrollbar_bg"][variant])
     for option in SCROLLBAR_HOVER_TRACKS:
         text = set_option(text, option, cfg["scrollbar_hover"][variant])
