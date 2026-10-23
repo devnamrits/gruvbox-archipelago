@@ -25,3 +25,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Medium and Soft editor panes now use their own background instead of the
   Hard `TEXT` background from the source scheme.
+- Rounded buttons no longer show a square background behind their corners.
+- Inactive tool-window headers and tabs follow the Medium and Soft surfaces
+  instead of falling back to the Hard near-black layer.

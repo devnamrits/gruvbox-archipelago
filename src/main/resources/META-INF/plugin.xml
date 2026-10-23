@@ -33,6 +33,7 @@
             <li>Archipelago Dark/Light use the canonical Gruvbox Medium background by default.</li>
             <li>Canonical Gruvbox palette across all UI surfaces and six editor schemes.</li>
             <li>Islands UI support plus classic flat variants.</li>
+            <li>Editor panes, rounded buttons, and inactive tool-window headers follow each variant's own surface.</li>
         </ul>
     ]]></change-notes>
 

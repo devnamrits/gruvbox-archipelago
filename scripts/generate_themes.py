@@ -435,6 +435,10 @@ def build_colors(
     control_bg_small = "bg2" if dark else "bg1"
     control_bg_small_disabled = "bg1"
     feedback_bg = "bg1" if dark else "bg0_h"
+    # Hard keeps its original two-tone inactive header.  Medium and Soft use
+    # the active header color so an inactive tool window cannot fall back to
+    # the Hard-only near-black/bright surface.
+    header_inactive_bg = "bg0_h" if hard else "bg0_s"
     tab_selected_border = "blue-110" if dark else "blue-90"
     tab_selected_border_inactive = "bg3" if dark else "bg2"
     text = "fg1"
@@ -462,6 +466,7 @@ def build_colors(
             "editor-tabs-bg": editor_tabs_bg,
             "tool-window-bg": tool_bg,
             "main-window-bg": main_bg,
+            "tool-window-header-inactive-bg": header_inactive_bg,
             "tool-window-bg-alt": "bg0_s" if dark else "bg0_h",
             "tool-window-bg-inline": tool_bg_inline,
             "tool-window-border": "bg1" if dark else "bg2",
@@ -703,12 +708,12 @@ def build_ui(dark: bool, islands: bool) -> dict:
             "borderColor": border_color,
             "Header": {
                 "background": "bg0_s",
-                "inactiveBackground": "bg0_h",
+                "inactiveBackground": "tool-window-header-inactive-bg",
                 "borderColor": "tool-window-border",
             },
             "HeaderTab": {
-                "hoverInactiveBackground": "bg0_h",
-                "selectedInactiveBackground": "bg0_h",
+                "hoverInactiveBackground": "tool-window-header-inactive-bg",
+                "selectedInactiveBackground": "tool-window-header-inactive-bg",
             },
             "Stripe": {
                 "background": "main-window-bg",
@@ -765,8 +770,10 @@ def build_ui(dark: bool, islands: bool) -> dict:
         "Borders.ContrastBorderColor": "bg2",
         "Separator.separatorColor": "bg2",
         "Separator.foreground": "bg2",
+        # Keep the fill on the rounded start/end keys. A separate solid
+        # "background" key paints a square behind the button arc.
         "Button": {
-            "background": "control-bg",
+            "arc": 8,
             "foreground": "text-default",
             "startBackground": "control-bg",
             "endBackground": "control-bg",
@@ -775,16 +782,14 @@ def build_ui(dark: bool, islands: bool) -> dict:
             "focusedBorderColor": "control-bg",
             "shadowColor": "transparent",
             "loadingForeground": "text-secondary",
-            "disabledBackground": "control-bg-disabled",
             "disabledForeground": "text-disabled",
             "default": {
-                "background": "bg0_s",
                 "foreground": "fg0",
                 "startBackground": "bg0_s",
                 "endBackground": "bg0_s",
                 "startBorderColor": "bg2",
                 "endBorderColor": "bg2",
-                "focusedBorderColor": "bg0_h",
+                "focusedBorderColor": "control-bg",
                 "shadowColor": "transparent",
                 "loadingForeground": "text-muted",
             },

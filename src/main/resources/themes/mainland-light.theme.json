@@ -180,6 +180,7 @@
     "editor-tabs-bg": "bg0_s",
     "tool-window-bg": "bg0",
     "main-window-bg": "bg0",
+    "tool-window-header-inactive-bg": "bg0_s",
     "tool-window-bg-alt": "bg0_h",
     "tool-window-bg-inline": "bg0",
     "tool-window-border": "bg2",
@@ -521,12 +522,12 @@
       "borderColor": "bg2",
       "Header": {
         "background": "bg0_s",
-        "inactiveBackground": "bg0_h",
+        "inactiveBackground": "tool-window-header-inactive-bg",
         "borderColor": "tool-window-border"
       },
       "HeaderTab": {
-        "hoverInactiveBackground": "bg0_h",
-        "selectedInactiveBackground": "bg0_h"
+        "hoverInactiveBackground": "tool-window-header-inactive-bg",
+        "selectedInactiveBackground": "tool-window-header-inactive-bg"
       },
       "Stripe": {
         "background": "main-window-bg",
@@ -584,7 +585,7 @@
     "Separator.separatorColor": "bg2",
     "Separator.foreground": "bg2",
     "Button": {
-      "background": "control-bg",
+      "arc": 8,
       "foreground": "text-default",
       "startBackground": "control-bg",
       "endBackground": "control-bg",
@@ -593,16 +594,14 @@
       "focusedBorderColor": "control-bg",
       "shadowColor": "transparent",
       "loadingForeground": "text-secondary",
-      "disabledBackground": "control-bg-disabled",
       "disabledForeground": "text-disabled",
       "default": {
-        "background": "bg0_s",
         "foreground": "fg0",
         "startBackground": "bg0_s",
         "endBackground": "bg0_s",
         "startBorderColor": "bg2",
         "endBorderColor": "bg2",
-        "focusedBorderColor": "bg0_h",
+        "focusedBorderColor": "control-bg",
         "shadowColor": "transparent",
         "loadingForeground": "text-muted"
       },
