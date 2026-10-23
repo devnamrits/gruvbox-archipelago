@@ -26,6 +26,15 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      - name: Verify generated themes and schemes
+        run: |
+          python3 scripts/generate_themes.py
+          python3 scripts/generate_schemes.py
+          git diff --exit-code
+
+      - name: Verify theme palette and references
+        run: python3 scripts/verify_themes.py
+
       - name: Build plugin
         run: ./gradlew buildPlugin --stacktrace
 

@@ -9,24 +9,29 @@
         Gruvbox to modern JetBrains IDEs, with first-class support for the
         Islands UI.</p>
 
-        <p>Four themes are included:</p>
+        <p>Eight themes are included:</p>
         <ul>
-            <li><b>Archipelago Dark</b> &mdash; Gruvbox dark with the modern Islands layout.</li>
-            <li><b>Archipelago Light</b> &mdash; Gruvbox light with the modern Islands layout.</li>
-            <li><b>Mainland Dark</b> &mdash; the classic flat dark layout, without islands.</li>
-            <li><b>Mainland Light</b> &mdash; the classic flat light layout, without islands.</li>
+            <li><b>Archipelago Dark</b> and <b>Archipelago Light</b> &mdash; the modern Islands layout with the canonical Gruvbox <b>Medium</b> background.</li>
+            <li><b>Archipelago Dark Hard</b> and <b>Archipelago Light Hard</b> &mdash; the Islands layout with the <b>Hard</b> background.</li>
+            <li><b>Archipelago Dark Soft</b> and <b>Archipelago Light Soft</b> &mdash; the Islands layout with the <b>Soft</b> background.</li>
+            <li><b>Mainland Dark</b> and <b>Mainland Light</b> &mdash; the classic flat layout with the <b>Medium</b> background.</li>
         </ul>
+
+        <p>Hard, Medium, and Soft are the three canonical Gruvbox background
+        variants. Medium is the standard default; Hard has the strongest
+        contrast, and Soft is the gentlest.</p>
 
         <p>Based on the editor schemes from Vincent Parizet's MIT-licensed
         Gruvbox Theme, refreshed for IntelliJ Platform 2025.3+ and the Islands
-        UI, with full UI and editor-scheme coverage for modern JetBrains IDEs.</p>
+        UI, with full UI and editor-scheme coverage across all eight themes.</p>
     ]]></description>
 
     <change-notes><![CDATA[
         <h3>0.1.0</h3>
         <ul>
-            <li>Initial release with Archipelago Dark/Light and Mainland Dark/Light.</li>
-            <li>Canonical Gruvbox palette across the UI and editor schemes.</li>
+            <li>Initial release with eight themes: Islands Archipelago Dark/Light in Hard, Medium, and Soft, plus classic Mainland Dark/Light in Medium.</li>
+            <li>Archipelago Dark/Light use the canonical Gruvbox Medium background by default.</li>
+            <li>Canonical Gruvbox palette across all UI surfaces and six editor schemes.</li>
             <li>Islands UI support plus classic flat variants.</li>
         </ul>
     ]]></change-notes>
@@ -36,8 +41,16 @@
     <extensions defaultExtensionNs="com.intellij">
         <themeProvider id="com.devnamrits.gruvboxarchipelago.archipelago.dark"
                        path="/themes/archipelago-dark.theme.json"/>
+        <themeProvider id="com.devnamrits.gruvboxarchipelago.archipelago.dark.hard"
+                       path="/themes/archipelago-dark-hard.theme.json"/>
+        <themeProvider id="com.devnamrits.gruvboxarchipelago.archipelago.dark.soft"
+                       path="/themes/archipelago-dark-soft.theme.json"/>
         <themeProvider id="com.devnamrits.gruvboxarchipelago.archipelago.light"
                        path="/themes/archipelago-light.theme.json"/>
+        <themeProvider id="com.devnamrits.gruvboxarchipelago.archipelago.light.hard"
+                       path="/themes/archipelago-light-hard.theme.json"/>
+        <themeProvider id="com.devnamrits.gruvboxarchipelago.archipelago.light.soft"
+                       path="/themes/archipelago-light-soft.theme.json"/>
         <themeProvider id="com.devnamrits.gruvboxarchipelago.mainland.dark"
                        path="/themes/mainland-dark.theme.json"/>
         <themeProvider id="com.devnamrits.gruvboxarchipelago.mainland.light"

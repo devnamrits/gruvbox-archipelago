@@ -6,8 +6,16 @@ listing.
 ## 1. Prepare the release
 
 1. Update `version` in `build.gradle.kts`.
-2. Move the `Unreleased` notes in `CHANGELOG.md` under the new version.
-3. Commit and tag:
+2. Regenerate the theme JSON files and editor schemes:
+
+   ```bash
+   python3 scripts/generate_themes.py
+   python3 scripts/generate_schemes.py
+   python3 scripts/verify_themes.py
+   ```
+
+3. Move the `Unreleased` notes in `CHANGELOG.md` under the new version.
+4. Commit and tag:
 
    ```bash
    git add .
@@ -20,6 +28,7 @@ listing.
 
 ```bash
 ./gradlew clean buildPlugin verifyPluginStructure \
+  verifyPluginProjectConfiguration \
   -PlocalIdePath="/Applications/IntelliJ IDEA.app"
 ```
 
@@ -29,18 +38,20 @@ The installable ZIP is written to
 Load it once in a clean IDE profile before publishing:
 
 - **Settings → Plugins → ⚙ → Install Plugin from Disk…**
-- Check all four themes in **Settings → Appearance**.
+- Check all eight themes in **Settings → Appearance**.
 - Verify tool windows, popups, the commit dialog, and the editor scheme.
+- Switch between Hard, Medium, and Soft to confirm the tab and panel layers.
 
 ## 3. Screenshots for the listing
 
-The Marketplace listing needs at least one screenshot. Use 2–4 PNGs at
+The Marketplace listing needs at least one screenshot. Use four or five PNGs at
 1280×800 or larger:
 
-- `screenshots/archipelago-dark.png` — Islands dark, code + project tree.
-- `screenshots/archipelago-light.png` — Islands light.
-- `screenshots/mainland-dark.png` — classic dark.
-- `screenshots/mainland-light.png` — classic light.
+- `screenshots/archipelago-dark.png` — Islands dark, Medium default.
+- `screenshots/archipelago-light.png` — Islands light, Medium default.
+- `screenshots/mainland-dark.png` — classic dark, Medium.
+- `screenshots/mainland-light.png` — classic light, Medium.
+- `screenshots/archipelago-variants.png` — optional Hard/Medium/Soft comparison.
 
 For consistent shots:
 
@@ -79,7 +90,7 @@ variables in CI. Keep the private key in repository secrets.
 3. Fill in:
    - **Name:** Gruvbox Archipelago
    - **Category:** Theme / User Interface
-   - **Tags:** gruvbox, theme, islands, dark, light
+   - **Tags:** gruvbox, theme, islands, dark, light, hard, medium, soft
    - **Description:** reuse the README (Marketplace accepts HTML).
    - **Source code:** the GitHub repository URL.
    - **License:** MIT.
@@ -100,13 +111,8 @@ workflow when the listing is live.
 
 ## 7. GitHub repository
 
-The local repository is ready. To create the remote and push:
-
-```bash
-gh auth login
-gh repo create devnamrits/gruvbox-archipelago \
-  --public --source=. --remote=origin --push
-```
-
-Then enable Issues and Discussions, add the Marketplace badge, and point the
-Marketplace "Source code" field at the repository.
+The repository is live at
+<https://github.com/devnamrits/gruvbox-archipelago> and the `origin` remote is
+configured. After the Marketplace listing is live, enable Issues and
+Discussions, add the Marketplace badge, and point the listing's **Source code**
+field at the repository.

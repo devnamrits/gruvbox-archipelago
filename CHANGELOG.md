@@ -7,12 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.0] - 2026-10-22
+## [0.1.0] - 2026-10-23
 
 ### Added
 
-- Initial plugin scaffold for IntelliJ Platform 2025.3+.
-- Archipelago Dark and Archipelago Light Islands themes.
-- Mainland Dark and Mainland Light classic themes.
-- Gruvbox dark/light editor schemes derived from Vincent Parizet's MIT theme.
-- Shared palette generator for all four theme variants.
+- Eight themes: Islands Archipelago Dark/Light in Hard, Medium, and Soft, plus
+  classic Mainland Dark/Light in Medium.
+- Canonical Gruvbox Medium background as the default for Archipelago Dark and
+  Archipelago Light.
+- Six editor schemes covering dark/light Hard, Medium, and Soft variants.
+- Shared palette generator for all eight theme variants.
+- Scheme generator for the Medium and Soft editor schemes.
+- Canonical Gruvbox palette across all UI surfaces and editor schemes.
+- Islands UI support plus classic flat variants.

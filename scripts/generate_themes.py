@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the four Gruvbox Archipelago theme JSON files.
+"""Generate the Gruvbox Archipelago theme JSON files.
 
 Every UI colour is derived from the canonical Gruvbox palette.  The Islands
 variants inherit from Islands Dark/Light; the classic variants inherit from the
@@ -7,8 +7,8 @@ non-islands Experimental themes.  Primitive ramps are overridden too, because
 otherwise the parent themes leak their own blue/gray primitives into components
 we have not named explicitly.
 
-The editor schemes are hand-maintained XML files; this script only generates
-the UI themes.
+The Hard editor schemes are hand-maintained XML files.  Medium and Soft
+schemes are derived from them by scripts/generate_schemes.py.
 """
 
 from __future__ import annotations
@@ -99,14 +99,61 @@ ACCENT_ANCHORS = {
 DARK_BG = "#1d2021"
 LIGHT_BG = "#f9f5d7"
 
+BG_KEYS = {"hard": "bg0_h", "medium": "bg0", "soft": "bg0_s"}
+
+
+def surface_layers(dark: bool, islands: bool, background: str) -> tuple[str, str, str]:
+    """Return the editor, tool-window, and main-window background keys."""
+    editor = BG_KEYS[background]
+
+    if not islands:
+        return editor, editor, editor
+
+    if dark:
+        tool, main = {
+            "hard": ("bg0", "bg0_s"),
+            "medium": ("bg0_s", "bg1"),
+            "soft": ("bg1", "bg2"),
+        }[background]
+    else:
+        tool, main = {
+            "hard": ("bg0", "bg1"),
+            "medium": ("bg0_s", "bg2"),
+            "soft": ("bg1", "bg2"),
+        }[background]
+
+    return editor, tool, main
+
+
 THEMES = [
     {
         "file": "archipelago-dark.theme.json",
         "name": "Archipelago Dark",
         "dark": True,
         "islands": True,
+        "background": "medium",
         "parent": "Islands Dark",
-        "scheme": "/themes/schemes/archipelago-dark.xml",
+        "scheme": "/themes/schemes/archipelago-dark-medium.xml",
+        "palette": DARK,
+    },
+    {
+        "file": "archipelago-dark-hard.theme.json",
+        "name": "Archipelago Dark Hard",
+        "dark": True,
+        "islands": True,
+        "background": "hard",
+        "parent": "Islands Dark",
+        "scheme": "/themes/schemes/archipelago-dark-hard.xml",
+        "palette": DARK,
+    },
+    {
+        "file": "archipelago-dark-soft.theme.json",
+        "name": "Archipelago Dark Soft",
+        "dark": True,
+        "islands": True,
+        "background": "soft",
+        "parent": "Islands Dark",
+        "scheme": "/themes/schemes/archipelago-dark-soft.xml",
         "palette": DARK,
     },
     {
@@ -114,8 +161,29 @@ THEMES = [
         "name": "Archipelago Light",
         "dark": False,
         "islands": True,
+        "background": "medium",
         "parent": "Islands Light",
-        "scheme": "/themes/schemes/archipelago-light.xml",
+        "scheme": "/themes/schemes/archipelago-light-medium.xml",
+        "palette": LIGHT,
+    },
+    {
+        "file": "archipelago-light-hard.theme.json",
+        "name": "Archipelago Light Hard",
+        "dark": False,
+        "islands": True,
+        "background": "hard",
+        "parent": "Islands Light",
+        "scheme": "/themes/schemes/archipelago-light-hard.xml",
+        "palette": LIGHT,
+    },
+    {
+        "file": "archipelago-light-soft.theme.json",
+        "name": "Archipelago Light Soft",
+        "dark": False,
+        "islands": True,
+        "background": "soft",
+        "parent": "Islands Light",
+        "scheme": "/themes/schemes/archipelago-light-soft.xml",
         "palette": LIGHT,
     },
     {
@@ -123,8 +191,9 @@ THEMES = [
         "name": "Mainland Dark",
         "dark": True,
         "islands": False,
+        "background": "medium",
         "parent": "ExperimentalDark",
-        "scheme": "/themes/schemes/archipelago-dark.xml",
+        "scheme": "/themes/schemes/archipelago-dark-medium.xml",
         "palette": DARK,
     },
     {
@@ -132,8 +201,9 @@ THEMES = [
         "name": "Mainland Light",
         "dark": False,
         "islands": False,
+        "background": "medium",
         "parent": "ExperimentalLight",
-        "scheme": "/themes/schemes/archipelago-light.xml",
+        "scheme": "/themes/schemes/archipelago-light-medium.xml",
         "palette": LIGHT,
     },
 ]
@@ -299,31 +369,74 @@ def build_classic_scales(dark: bool, palette: dict[str, str], scales: dict[str, 
 # ---------------------------------------------------------------------------
 
 
-def build_colors(palette: dict[str, str], dark: bool, islands: bool) -> dict[str, str]:
+def build_colors(
+    palette: dict[str, str], dark: bool, islands: bool, background: str
+) -> dict[str, str]:
     scales = build_scales()
     colors: dict[str, str] = {}
     colors.update(palette)
     colors.update(scales)
 
-    tool_bg = "bg0"
-    main_bg = ("bg0_s" if dark else "bg1") if islands else "bg0"
-    editor_bg = "bg0_h"
-    editor_tabs_bg = "bg0_h" if dark else "bg0"
-    dialog_bg = "bg0_h" if dark else "bg0"
-    dialog_bg_inline = "bg0" if dark else "bg0_h"
-    control_bg = "bg0_h"
+    editor_bg, tool_bg, main_bg = surface_layers(dark, islands, background)
+    hard = background == "hard"
+    popup_bg = "bg1" if dark else "bg0_h"
+
+    if hard:
+        # Preserve the original Hard mapping exactly; it is the reference
+        # variant used for the first screenshots.
+        editor_tabs_bg = "bg0_h" if dark else "bg0"
+        dialog_bg = "bg0_h" if dark else "bg0"
+        dialog_bg_inline = "bg0" if dark else "bg0_h"
+        control_bg = "bg0_h"
+        feedback_bg_inline = "bg0_h" if dark else "bg0"
+        selection_inactive = "bg0_s" if dark else "bg1"
+        tab_selected_bg = "bg2" if dark else "bg0_h"
+        tab_selected_bg_inactive = "bg0_s"
+        tab_hover = "#28282866" if dark else "#fbf1c766"
+        editor_bg_inline = "bg0" if dark else "bg0_h"
+        tool_bg_inline = "bg0" if dark else "bg0_h"
+        layer_0_bg = "bg0_h"
+        layer_0_bg_inline = "bg0" if dark else "bg0_h"
+        layer_1_bg = "bg0_s" if dark else "bg0"
+        layer_1_bg_inline = "bg1" if dark else "bg0_h"
+        layer_2_bg = "bg1" if dark else "bg0_h"
+        layer_2_bg_inline = "bg2" if dark else "bg0"
+    else:
+        if dark:
+            editor_tabs_bg = editor_bg
+            secondary_bg = tool_bg if islands else "bg1"
+            tab_selected_bg = "bg2"
+            hover_bg = tool_bg if islands else "bg1"
+        else:
+            # Keep the light tab bar one step darker than the editor so the
+            # selected tab can use the editor background without merging.
+            editor_tabs_bg = {"hard": "bg0", "medium": "bg0_s", "soft": "bg1"}[background]
+            secondary_bg = editor_tabs_bg
+            tab_selected_bg = editor_bg
+            hover_bg = main_bg if islands else "bg2"
+
+        dialog_bg = editor_bg
+        dialog_bg_inline = tool_bg
+        control_bg = editor_bg
+        feedback_bg_inline = editor_bg
+        selection_inactive = secondary_bg
+        tab_selected_bg_inactive = secondary_bg
+        tab_hover = palette[hover_bg] + "66"
+        editor_bg_inline = editor_bg
+        tool_bg_inline = tool_bg
+        layer_0_bg = editor_bg
+        layer_0_bg_inline = tool_bg
+        layer_1_bg = tool_bg
+        layer_1_bg_inline = main_bg
+        layer_2_bg = main_bg
+        layer_2_bg_inline = popup_bg
+
     control_bg_raised = "bg1" if dark else "bg0_h"
     control_bg_small = "bg2" if dark else "bg1"
     control_bg_small_disabled = "bg1"
-    popup_bg = "bg1" if dark else "bg0_h"
     feedback_bg = "bg1" if dark else "bg0_h"
-    feedback_bg_inline = "bg0_h" if dark else "bg0"
-    selection_inactive = "bg0_s" if dark else "bg1"
-    tab_selected_bg = "bg2" if dark else "bg0_h"
-    tab_selected_bg_inactive = "bg0_s"
     tab_selected_border = "blue-110" if dark else "blue-90"
     tab_selected_border_inactive = "bg3" if dark else "bg2"
-    tab_hover = "#28282866" if dark else "#fbf1c766"
     text = "fg1"
     text_muted = "fg4"
     text_secondary = "fg3"
@@ -350,7 +463,7 @@ def build_colors(palette: dict[str, str], dark: bool, islands: bool) -> dict[str
             "tool-window-bg": tool_bg,
             "main-window-bg": main_bg,
             "tool-window-bg-alt": "bg0_s" if dark else "bg0_h",
-            "tool-window-bg-inline": "bg0" if dark else "bg0_h",
+            "tool-window-bg-inline": tool_bg_inline,
             "tool-window-border": "bg1" if dark else "bg2",
             "tool-window-border-inline": "bg2",
             "editor-border": "bg1" if dark else "bg2",
@@ -366,19 +479,19 @@ def build_colors(palette: dict[str, str], dark: bool, islands: bool) -> dict[str
             "popup-border": "bg2",
             "popup-border-inline": "bg2",
             "popup-border-windows": "bg2",
-            "editor-bg-inline": "bg0" if dark else "bg0_h",
+            "editor-bg-inline": editor_bg_inline,
             "editor-floating-toolbar-bg": "bg1" if dark else "bg0_h",
             # Layer tokens
-            "layer-0-bg": "bg0_h",
-            "layer-0-bg-inline": "bg0" if dark else "bg0_h",
+            "layer-0-bg": layer_0_bg,
+            "layer-0-bg-inline": layer_0_bg_inline,
             "layer-0-border": "bg1" if dark else "bg2",
             "layer-0-border-inline": "bg1" if dark else "bg2",
-            "layer-1-bg": "bg0_s" if dark else "bg0",
-            "layer-1-bg-inline": "bg1" if dark else "bg0_h",
+            "layer-1-bg": layer_1_bg,
+            "layer-1-bg-inline": layer_1_bg_inline,
             "layer-1-border": "bg2",
             "layer-1-border-inline": "bg2",
-            "layer-2-bg": "bg1" if dark else "bg0_h",
-            "layer-2-bg-inline": "bg2" if dark else "bg0",
+            "layer-2-bg": layer_2_bg,
+            "layer-2-bg-inline": layer_2_bg_inline,
             "layer-2-border": "bg2",
             "layer-2-border-inline": "bg3" if dark else "bg2",
             # Text and icons
@@ -397,13 +510,13 @@ def build_colors(palette: dict[str, str], dark: bool, islands: bool) -> dict[str
             "selection-bg-active": "bg2" if dark else "bg1",
             "selection-bg-active-muted": "bg1",
             "selection-bg-inactive": selection_inactive,
-            "selection-bg-hovered": "#28282866" if dark else "#fbf1c766",
+            "selection-bg-hovered": tab_hover,
             "tab-selected-bg-active": tab_selected_bg,
             "tab-selected-bg-inactive": tab_selected_bg_inactive,
             "tab-selected-border-active": tab_selected_border,
             "tab-selected-border-inactive": tab_selected_border_inactive,
             "tab-bg-hovered": tab_hover,
-            "tab-file-color-mask-bg": "#28282866" if dark else "#fbf1c766",
+            "tab-file-color-mask-bg": tab_hover,
             # Accent roles
             "accent-brand-bg": accent_brand,
             "accent-brand-border": accent_brand,
@@ -504,7 +617,7 @@ def build_colors(palette: dict[str, str], dark: bool, islands: bool) -> dict[str
             "transparent-white-50": "#ffffff3b",
             "core-bg-transparent-hovered": "#ebdbb214" if dark else "#3c383614",
             "core-bg-transparent-pressed": "#ebdbb226" if dark else "#3c383626",
-            "core-border-transparent": "#ebdbb233" if dark else "#3c383333",
+            "core-border-transparent": "#ebdbb233" if dark else "#3c383633",
             "inlay-bg": "#50494533" if dark else "#d5c4a133",
             "inlay-border": "#7c6f6480" if dark else "#bdae9380",
             "control-brand-bg": accent_brand,
@@ -1226,7 +1339,7 @@ def build_ui(dark: bool, islands: bool) -> dict:
 # ---------------------------------------------------------------------------
 
 
-def build_grad_colors(dark: bool) -> dict[str, str]:
+def build_grad_colors(dark: bool, bg: str) -> dict[str, str]:
     groups = [
         ("amber", "#fe8019", "#af3a03"),
         ("rust", "#fb4934", "#9d0006"),
@@ -1238,7 +1351,6 @@ def build_grad_colors(dark: bool) -> dict[str, str]:
         ("ocean", "#8ec07c", "#427b58"),
         ("grass", "#b8bb26", "#79740e"),
     ]
-    bg = "#1d2021" if dark else "#f9f5d7"
     out: dict[str, str] = {}
     for i, (name, bright, darkaccent) in enumerate(groups, start=1):
         accent = bright if dark else darkaccent
@@ -1281,8 +1393,11 @@ def build_grad_colors(dark: bool) -> dict[str, str]:
 def build_theme(spec: dict) -> dict:
     dark = spec["dark"]
     islands = spec["islands"]
-    colors = build_colors(spec["palette"], dark, islands)
-    colors.update(build_grad_colors(dark))
+    background = spec["background"]
+    colors = build_colors(spec["palette"], dark, islands, background)
+    colors.update(
+        build_grad_colors(dark, spec["palette"][BG_KEYS[background]])
+    )
     return {
         "name": spec["name"],
         "dark": dark,

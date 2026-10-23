@@ -1,7 +1,7 @@
 # Gruvbox Archipelago
 
-A modern **Gruvbox-inspired** theme for JetBrains IDEs with first-class support
-for the **Islands UI** — plus classic flat variants for people who prefer the
+A modern **Gruvbox** theme for JetBrains IDEs with first-class support for the
+**Islands UI** — plus classic flat variants for people who prefer the
 pre-Islands look.
 
 > **Status:** early development (`0.1.0`). Built and verified against
@@ -9,12 +9,25 @@ pre-Islands look.
 
 ## Themes
 
-| Theme | Layout | Mode |
+Gruvbox's three canonical background variants are included for the Islands
+layout. **Archipelago Dark** and **Archipelago Light** use **Medium**, the
+standard Gruvbox background, by default.
+
+| Theme | Layout | Background |
 | --- | --- | --- |
-| **Archipelago Dark** | Islands (rounded, floating panels) | Dark |
-| **Archipelago Light** | Islands (rounded, floating panels) | Light |
-| **Mainland Dark** | Classic flat UI | Dark |
-| **Mainland Light** | Classic flat UI | Light |
+| **Archipelago Dark** | Islands | Medium (default) |
+| **Archipelago Dark Hard** | Islands | Hard |
+| **Archipelago Dark Soft** | Islands | Soft |
+| **Archipelago Light** | Islands | Medium (default) |
+| **Archipelago Light Hard** | Islands | Hard |
+| **Archipelago Light Soft** | Islands | Soft |
+| **Mainland Dark** | Classic flat | Medium |
+| **Mainland Light** | Classic flat | Medium |
+
+Hard, Medium, and Soft are the three canonical Gruvbox background variants.
+Hard has the strongest contrast, Medium is the standard default, and Soft is the
+gentlest. Mainland currently ships in Medium; classic Hard/Soft variants may be
+added later if there is demand.
 
 The Islands variants inherit from JetBrains' `Islands Dark` / `Islands Light`
 themes, so they pick up the platform's rounded corners, spacing, and island
@@ -23,7 +36,8 @@ borders. The Mainland variants inherit from the classic `ExperimentalDark` /
 
 ## Highlights
 
-- Gruvbox hard/soft background layering tuned for Islands contrast.
+- All eight themes share one canonical Gruvbox palette.
+- Hard, Medium, and Soft background layering tuned for Islands contrast.
 - Separate UI and editor-scheme palettes for dark and light.
 - Editor schemes cover Java, Kotlin, Rust, Python, JavaScript/TypeScript,
   HTML/XML, SQL, shell, diff, VCS, and more.
@@ -54,7 +68,7 @@ downloading a platform distribution:
 ./gradlew buildPlugin -PlocalIdePath="/Applications/IntelliJ IDEA.app"
 ```
 
-Requires **JDK 17+** and **Gradle 9** (the wrapper handles Gradle).
+Requires **JDK 21+** and **Gradle 9** (the wrapper handles Gradle).
 
 ## Compatibility
 
@@ -64,15 +78,26 @@ Requires **JDK 17+** and **Gradle 9** (the wrapper handles Gradle).
 
 ## How it is built
 
-The four theme JSON files and the two editor schemes live in
+The eight theme JSON files and six editor schemes live in
 `src/main/resources/themes/`. The JSON files are generated from a shared,
-versioned palette by `scripts/generate_themes.py`:
+versioned palette:
 
 ```bash
 python3 scripts/generate_themes.py
 ```
 
-This keeps the dark/light and Islands/classic variants in sync.
+The Hard XML schemes are the source for the editor schemes. Medium and Soft are
+generated from them with:
+
+```bash
+python3 scripts/generate_schemes.py
+```
+
+Run both after palette or scheme changes, then validate the result:
+
+```bash
+python3 scripts/verify_themes.py
+```
 
 ## Project layout
 
@@ -81,13 +106,11 @@ src/main/resources/
 ├── META-INF/plugin.xml
 ├── META-INF/pluginIcon*.svg
 └── themes/
-    ├── archipelago-dark.theme.json
-    ├── archipelago-light.theme.json
-    ├── mainland-dark.theme.json
-    ├── mainland-light.theme.json
+    ├── archipelago-{dark,light}.theme.json          # Medium (default)
+    ├── archipelago-{dark,light}-{hard,soft}.theme.json
+    ├── mainland-{dark,light}.theme.json             # Medium
     └── schemes/
-        ├── archipelago-dark.xml
-        └── archipelago-light.xml
+        └── archipelago-{dark,light}-{hard,medium,soft}.xml
 ```
 
 ## Credits
