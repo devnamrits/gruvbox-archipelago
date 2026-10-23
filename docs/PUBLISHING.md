@@ -44,44 +44,74 @@ Load it once in a clean IDE profile before publishing:
 
 ## 3. Screenshots for the listing
 
-The Marketplace listing needs at least one screenshot. Use four or five PNGs at
-1280×800 or larger:
+The Marketplace listing accepts up to ten screenshots. Use one per theme, with
+the default Medium variants first:
 
-- `screenshots/archipelago-dark.png` — Islands dark, Medium default.
-- `screenshots/archipelago-light.png` — Islands light, Medium default.
-- `screenshots/mainland-dark.png` — classic dark, Medium.
-- `screenshots/mainland-light.png` — classic light, Medium.
-- `screenshots/archipelago-variants.png` — optional Hard/Medium/Soft comparison.
+- `screenshots/01-archipelago-dark.png` — Islands Dark, Medium default.
+- `screenshots/02-archipelago-light.png` — Islands Light, Medium default.
+- `screenshots/03-archipelago-dark-hard.png`
+- `screenshots/04-archipelago-dark-soft.png`
+- `screenshots/05-archipelago-light-hard.png`
+- `screenshots/06-archipelago-light-soft.png`
+- `screenshots/07-mainland-dark.png`
+- `screenshots/08-mainland-light.png`
+
+For a shorter listing, the two Medium defaults plus Dark Soft and Light Soft are
+enough; the full set above shows every variant.
 
 For consistent shots:
 
 1. Use a clean IDE profile and a representative project.
 2. Set the editor font to **IBM Plex Mono 14** (the font used by the original
    Gruvbox screenshots) or keep the IDE default.
-3. Hide personal paths, tokens, and unrelated notifications.
-4. Capture the whole IDE window, not just the editor.
+3. Disable **Settings → Editor → Inlay Hints → Code Vision → Author** so the
+   VCS author handle is not captured. Hide personal paths, tokens, and
+   unrelated notifications too.
+4. Select the open source file in the Project tree so the selection highlight is
+   visible; do not select a build output folder.
+5. Capture the whole IDE window, not just the editor. Avoid the macOS menu bar
+   and full-screen letterboxing.
+6. Normalize the files before upload:
+
+   ```bash
+   python3 scripts/prepare_screenshots.py
+   ```
+
+   This writes sRGB PNGs to `screenshots/marketplace/`, removes the black macOS
+   strip when present, strips EXIF/XMP metadata, and checks the 1280×800 minimum.
+   Upload the files from `screenshots/marketplace/`.
+
+Keep text at a readable size. A retina capture around 2940×1846 is fine; do not
+downscale it below 1280×800.
 
 ## 4. Sign the plugin (recommended)
 
 Generate a signing key pair once and keep it out of the repository:
 
 ```bash
-openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -out private.pem
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 \
+  -aes-256-cbc -out private.pem
 openssl req -new -x509 -key private.pem -out cert.pem -days 3650
 ```
 
-Then sign the ZIP:
+Use the standalone Marketplace ZIP Signer CLI, not the obsolete
+`-Psigning.*` Gradle properties. Download
+`marketplace-zip-signer-cli-0.1.43.jar` from
+<https://github.com/JetBrains/marketplace-zip-signer/releases>, then sign the
+exact ZIP you intend to upload:
 
 ```bash
-./gradlew signPlugin \
-  -Psigning.certificateChain=cert.pem \
-  -Psigning.privateKey=private.pem \
-  -Psigning.password='<key-password>'
+java -jar marketplace-zip-signer-cli-0.1.43.jar sign \
+  -in build/distributions/gruvbox-archipelago-0.1.0.zip \
+  -out build/distributions/gruvbox-archipelago-0.1.0-signed.zip \
+  -cert-file cert.pem \
+  -key-file private.pem \
+  -key-pass "$SIGNING_PASSWORD"
 ```
 
-The Gradle IntelliJ Platform plugin also supports the
-`CERTIFICATE_CHAIN`, `PRIVATE_KEY`, and `PRIVATE_KEY_PASSWORD` environment
-variables in CI. Keep the private key in repository secrets.
+Upload the `-signed.zip`; do not upload the unsigned ZIP or re-zip the signed
+one. Record the signed ZIP's SHA-256. Keep `private.pem` in a password manager
+or CI secret, never in the repository.
 
 ## 5. Create the Marketplace listing
 
