@@ -171,8 +171,15 @@ def main() -> int:
         colors = theme.get("colors", {})
         editor = resolve(colors, colors.get("editor-bg", ""))
         backdrop = resolve(colors, colors.get("main-window-bg", ""))
+        tool = resolve(colors, colors.get("tool-window-bg", ""))
         ratio = contrast(editor, backdrop) if editor and backdrop else 0
         print(f"  {name:28} editor={editor or '?':9} backdrop={backdrop or '?':9} contrast={ratio:.2f}:1")
+
+        # A selected tree/list row must not disappear into the tool window.
+        for key in ("selection-bg-active", "selection-bg-active-muted", "selection-bg-inactive"):
+            selection = resolve(colors, colors.get(key, ""))
+            if selection and selection == tool:
+                errors.append(f"{path.name}: {key} matches tool-window-bg {tool}")
 
         if scheme_file.is_file():
             if not text_bg:

@@ -419,7 +419,9 @@ def build_colors(
         dialog_bg_inline = tool_bg
         control_bg = editor_bg
         feedback_bg_inline = editor_bg
-        selection_inactive = secondary_bg
+        # Keep the selected row distinct from the tool-window background.  In
+        # Light Soft both were bg1, so a selected file had no visible highlight.
+        selection_inactive = "bg2" if background == "soft" else "bg1"
         tab_selected_bg_inactive = secondary_bg
         tab_hover = palette[hover_bg] + "66"
         editor_bg_inline = editor_bg
@@ -511,9 +513,10 @@ def build_colors(
             "icon-over-accent": "#ffffff",
             "text-over-accent": "#ffffff",
             "text-over-accent-inverted": "#000000",
-            # Selection and tabs
-            "selection-bg-active": "bg2" if dark else "bg1",
-            "selection-bg-active-muted": "bg1",
+            # Selection and tabs.  Light Soft needs bg2 for an active row
+            # because its tool-window background is also bg1.
+            "selection-bg-active": "bg2" if dark or background == "soft" else "bg1",
+            "selection-bg-active-muted": "bg2" if background == "soft" else "bg1",
             "selection-bg-inactive": selection_inactive,
             "selection-bg-hovered": tab_hover,
             "tab-selected-bg-active": tab_selected_bg,

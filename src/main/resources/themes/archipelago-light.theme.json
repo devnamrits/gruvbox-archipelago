@@ -225,7 +225,7 @@
     "text-over-accent-inverted": "#000000",
     "selection-bg-active": "bg1",
     "selection-bg-active-muted": "bg1",
-    "selection-bg-inactive": "bg0_s",
+    "selection-bg-inactive": "bg1",
     "selection-bg-hovered": "#d5c4a166",
     "tab-selected-bg-active": "bg0",
     "tab-selected-bg-inactive": "bg0_s",

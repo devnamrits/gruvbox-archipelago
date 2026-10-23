@@ -28,3 +28,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rounded buttons no longer show a square background behind their corners.
 - Inactive tool-window headers and tabs follow the Medium and Soft surfaces
   instead of falling back to the Hard near-black layer.
+- Selected files remain highlighted in the Light Soft project tree instead of
+  blending into the tool-window background.
