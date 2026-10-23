@@ -904,6 +904,10 @@ def build_ui(dark: bool, islands: bool) -> dict:
         "Tree": {
             "background": "tool-window-bg",
             "foreground": "text-default",
+            "selectionBackground": "selection-bg-active",
+            "selectionForeground": "text-default",
+            "selectionInactiveBackground": "selection-bg-inactive",
+            "selectionInactiveForeground": "text-default",
             "hoverBackground": "selection-bg-hovered",
             "hoverInactiveBackground": "selection-bg-hovered",
             "hash": "bg1",
