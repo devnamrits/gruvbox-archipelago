@@ -4,8 +4,8 @@ A modern **Gruvbox** theme for JetBrains IDEs with first-class support for the
 **Islands UI** — plus classic flat variants for people who prefer the
 pre-Islands look.
 
-> **Status:** early development (`0.1.0`). Built and verified against
-> IntelliJ IDEA 2026.2.1. Marketplace publication is next.
+> **Status:** early development (`0.1.0`). Built and structure-verified against
+> IntelliJ IDEA 2026.2.1. Final visual QA and Marketplace publication are next.
 
 ## Themes
 
