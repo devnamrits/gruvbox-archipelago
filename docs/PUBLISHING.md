@@ -89,25 +89,47 @@ downscale it below 1280×800.
 Generate a signing key pair once and keep it out of the repository:
 
 ```bash
+mkdir -p ~/.gruvbox-signing && chmod 700 ~/.gruvbox-signing
+
 openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 \
-  -aes-256-cbc -out private.pem
-openssl req -new -x509 -key private.pem -out cert.pem -days 3650
+  -aes-256-cbc -out ~/.gruvbox-signing/private.pem
+chmod 600 ~/.gruvbox-signing/private.pem
+
+# Keep the certificate subject neutral: it is embedded in the signed ZIP.
+openssl req -new -x509 -key ~/.gruvbox-signing/private.pem \
+  -out ~/.gruvbox-signing/cert.pem -days 3650 \
+  -subj "/CN=Gruvbox Archipelago/O=devnamrits"
 ```
 
 Use the standalone Marketplace ZIP Signer CLI, not the obsolete
 `-Psigning.*` Gradle properties. Download
 `marketplace-zip-signer-cli-0.1.43.jar` from
 <https://github.com/JetBrains/marketplace-zip-signer/releases>, then sign the
-exact ZIP you intend to upload:
+exact ZIP you intend to upload. Export the key password in the same terminal
+first; `read -s` keeps it out of shell history:
 
 ```bash
+read -s SIGNING_PASSWORD
+export SIGNING_PASSWORD
+
 java -jar marketplace-zip-signer-cli-0.1.43.jar sign \
   -in build/distributions/gruvbox-archipelago-0.1.0.zip \
   -out build/distributions/gruvbox-archipelago-0.1.0-signed.zip \
-  -cert-file cert.pem \
-  -key-file private.pem \
+  -cert-file ~/.gruvbox-signing/cert.pem \
+  -key-file ~/.gruvbox-signing/private.pem \
   -key-pass "$SIGNING_PASSWORD"
 ```
+
+If the signer reports `password empty`, the variable was not exported. If it
+reports `1.2.840.113549.1.5.13 not available`, re-encrypt the key with the
+signer-compatible PBE scheme:
+
+```bash
+openssl pkcs8 -topk8 -in ~/.gruvbox-signing/private.pem \
+  -out ~/.gruvbox-signing/private-3des.pem -v1 PBE-SHA1-3DES
+```
+
+and use `-key-file ~/.gruvbox-signing/private-3des.pem`.
 
 Upload the `-signed.zip`; do not upload the unsigned ZIP or re-zip the signed
 one. Record the signed ZIP's SHA-256. Keep `private.pem` in a password manager
