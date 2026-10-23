@@ -106,11 +106,15 @@ Use the standalone Marketplace ZIP Signer CLI, not the obsolete
 `marketplace-zip-signer-cli-0.1.43.jar` from
 <https://github.com/JetBrains/marketplace-zip-signer/releases>, then sign the
 exact ZIP you intend to upload. Export the key password in the same terminal
-first; `read -s` keeps it out of shell history:
+first; `read -rs` keeps it out of shell history and `IFS=` preserves spaces:
 
 ```bash
-read -s SIGNING_PASSWORD
+IFS= read -rs SIGNING_PASSWORD
 export SIGNING_PASSWORD
+
+# Optional: confirms the password before invoking the signer.
+openssl pkey -in ~/.gruvbox-signing/private.pem \
+  -passin env:SIGNING_PASSWORD -noout
 
 java -jar marketplace-zip-signer-cli-0.1.43.jar sign \
   -in build/distributions/gruvbox-archipelago-0.1.0.zip \
@@ -121,6 +125,8 @@ java -jar marketplace-zip-signer-cli-0.1.43.jar sign \
 ```
 
 If the signer reports `password empty`, the variable was not exported. If it
+reports `pad block corrupted` or `BadPaddingException`, the password is wrong;
+verify it with the `openssl pkey` command above or regenerate the key. If it
 reports `1.2.840.113549.1.5.13 not available`, re-encrypt the key with the
 signer-compatible PBE scheme:
 
