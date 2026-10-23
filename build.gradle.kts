@@ -6,6 +6,11 @@ plugins {
 group = "com.devnamrits"
 version = "0.1.0"
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
 repositories {
     mavenCentral()
     intellijPlatform {
@@ -34,7 +39,6 @@ intellijPlatform {
 
         ideaVersion {
             sinceBuild = "253"
-            untilBuild = "262.*"
         }
 
         vendor {
